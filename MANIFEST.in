@@ -1,0 +1,6 @@
+include requirements/*.txt
+include code_repo_template/VERSION
+include code_repo_template/.mim/model-index.yml
+include code_repo_template/.mim/demo/*/*
+recursive-include code_repo_template/.mim/configs *.py *.yml
+recursive-include code_repo_template/.mim/tools *.sh *.py
