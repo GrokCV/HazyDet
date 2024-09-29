@@ -1,6 +1,6 @@
 include requirements/*.txt
-include code_repo_template/VERSION
-include code_repo_template/.mim/model-index.yml
-include code_repo_template/.mim/demo/*/*
-recursive-include code_repo_template/.mim/configs *.py *.yml
-recursive-include code_repo_template/.mim/tools *.sh *.py
+include HazyDet/VERSION
+include HazyDet/.mim/model-index.yml
+include HazyDet/.mim/demo/*/*
+recursive-include HazyDet/.mim/configs *.py *.yml
+recursive-include HazyDet/.mim/tools *.sh *.py

@@ -11,7 +11,10 @@ from mmengine.runner import Runner
 
 from mmdet.utils import setup_cache_size_limit_of_dynamo
 
-from code_repo_template.datasets import *
+from HazyDet.datasets import *
+from HazyDet.models import *
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a detector')
