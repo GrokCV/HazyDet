@@ -311,3 +311,30 @@ We released our [checkpoint](https://pan.baidu.com/s/1EEX_934Q421RkHCx53akJQ?pwd
 ### Depth Maps
 
 The depth map required for training can be obtained through [Metic3D](https://github.com/YvanYin/Metric3D). They can also be acquired through other depth estimation models.<br>
+## Acknowledgement
+We are grateful to the Tianjin Key Laboratory of Visual Computing and Intelligent Perception (VCIP) for providing essential resources. Our sincere appreciation goes to Professor Pengfei Zhu and the dedicated AISKYEYE team at Tianjin University for their invaluable support with data, which has been crucial to our research efforts. We also deeply thank Xianghui Li, Yuxin Feng, and other researchers for granting us access to their datasets, significantly advancing and promoting our work in this field. Additionally, our thanks extend to [Metric3D](https://github.com/YvanYin/Metric3D) for its contributions to the methodology presented in this article. 
+
+
+## Citation
+
+If you use this toolbox or benchmark in your research, please cite this project.
+
+```bibtex
+@article{feng2024HazyDet,
+	title={HazyDet: Open-source Benchmark for Drone-view Object Detection with Depth-cues in Hazy Scenes}, 
+	author={Changfeng, Feng and Zhenyuan, Chen and Renke, Kou and Guangwei, Gao and Chunping, Wang and Xiang, Li and Xiangbo, Shu and Yimian, Dai and Qiang, Fu and Jian, Yang},
+	year={2024},
+	journal={arXiv},
+}
+
+@article{zhu2021detection,
+  title={Detection and tracking meet drones challenge},
+  author={Zhu, Pengfei and Wen, Longyin and Du, Dawei and Bian, Xiao and Fan, Heng and Hu, Qinghua and Ling, Haibin},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={44},
+  number={11},
+  pages={7380--7399},
+  year={2021},
+  publisher={IEEE}
+}
+```
