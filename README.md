@@ -60,8 +60,8 @@ All the weight files in the model zoo can be accessed on [Baidu Cloud](https://p
         <td>Backbone</td> 
         <td>#Params (M)</td>
         <td>GFLOPs</td>
-        <td>Test-set</td>
-        <td>RDDTS</td>
+        <td>mAP on<br>Test-set</td> <!-- 使用 <br> 标签换行 -->
+        <td>mAP on<br>RDDTS</td>
         <td>Config</td>
         <td>Weight</td>        
     </tr>
