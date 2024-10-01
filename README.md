@@ -504,7 +504,7 @@ If you use this toolbox or benchmark in your research, please cite this project.
 	title={HazyDet: Open-source Benchmark for Drone-view Object Detection with Depth-cues in Hazy Scenes}, 
 	author={Changfeng, Feng and Zhenyuan, Chen and Renke, Kou and Guangwei, Gao and Chunping, Wang and Xiang, Li and Xiangbo, Shu and Yimian, Dai and Qiang, Fu and Jian, Yang},
 	year={2024},
-	journal={arXiv},
+	journal={arXiv preprint arXiv:2409.19833},
 }
 
 @article{zhu2021detection,
