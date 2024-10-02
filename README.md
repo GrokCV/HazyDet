@@ -1,31 +1,32 @@
-# HazyDet: Open-source Benchmark for Drone-View Object Detection with Depth-cues in Hazy Scenes
+# HazyDet: Open-Source Benchmark for Drone-View Object Detection With Depth-Cues in Hazy Scenes
 This repository is the official implementation of HazyDet
 
-- [HazyDet: Open-source Benchmark for Drone-View Object Detection with Depth-cues in Hazy Scenes](#hazydet-open-source-benchmark-for-drone-view-object-detection-with-depth-cues-in-hazy-scenes)
-  - [HazyDet](#hazydet)
-  - [Leadboard and Model Zoo](#leadboard-and-model-zoo)
-    - [Detectors](#detectors)
-    - [Dehazing](#dehazing)
-  - [DeCoDet](#decodet)
-    - [Installation](#installation)
-      - [Step 1: Create a conda](#step-1-create-a-conda)
-      - [Step 2: Install PyTorch](#step-2-install-pytorch)
-      - [Step 3: Install OpenMMLab 2.x Codebases](#step-3-install-openmmlab-2x-codebases)
-      - [Step 4: Install `HazyDet`](#step-4-install-hazydet)
-    - [Training](#training)
-    - [Inference](#inference)
-    - [Depth Maps](#depth-maps)
-  - [Acknowledgement](#acknowledgement)
-  - [Citation](#citation)
+- [HazyDet](#hazydet)
+- [Leadboard and Model Zoo](#leadboard-and-model-zoo)
+  - [Detectors](#detectors)
+  - [Dehazing](#dehazing)
+- [DeCoDet](#decodet)
+  - [Installation](#installation)
+    - [Step 1: Create a conda](#step-1-create-a-conda)
+    - [Step 2: Install PyTorch](#step-2-install-pytorch)
+    - [Step 3: Install OpenMMLab 2.x Codebases](#step-3-install-openmmlab-2x-codebases)
+    - [Step 4: Install `HazyDet`](#step-4-install-hazydet)
+  - [Training](#training)
+  - [Inference](#inference)
+  - [Depth Maps](#depth-maps)
+- [Acknowledgement](#acknowledgement)
+- [Citation](#citation)
 
 ## HazyDet
 
 ![HazyDet](./docs/dataset_samples.jpg)
-You can download our HazyDet-365K dataset from [here](https://pan.baidu.com/s/1KKWqTbG1oBAdlIZrTzTceQ?pwd=grok).<br>
+
+You can **download** our HazyDet dataset from [**Baidu Netdisk**](https://pan.baidu.com/s/1KKWqTbG1oBAdlIZrTzTceQ?pwd=grok) or [**OneDrive**](https://1drv.ms/f/s!AmElF7K4aY9p83CqLdm4N-JSo9rg?e=H06ghJ).<br>
+
 For both training and inference, the following dataset structure is required:
 
 ```
-HazyDet-365K
+HazyDet
 |-- train
     |-- clean images
     |-- hazy images
@@ -435,7 +436,7 @@ All the weight files in the model zoo can be accessed on [Baidu Cloud](https://p
 
 
 ## DeCoDet
-![HazyDet-365K](./docs/network.jpg)
+![HazyDet](./docs/network.jpg)
 
 ### Installation
 
@@ -502,7 +503,7 @@ If you use this toolbox or benchmark in your research, please cite this project.
 ```bibtex
 @article{feng2024HazyDet,
 	title={HazyDet: Open-source Benchmark for Drone-view Object Detection with Depth-cues in Hazy Scenes}, 
-	author={Changfeng, Feng and Zhenyuan, Chen and Renke, Kou and Guangwei, Gao and Chunping, Wang and Xiang, Li and Xiangbo, Shu and Yimian, Dai and Qiang, Fu and Jian, Yang},
+	author={Feng, Changfeng and Chen, Zhenyuan and Kou, Renke and Gao, Guangwei and Wang, Chunping and Li, Xiang and Shu, Xiangbo and Dai, Yimian and Fu, Qiang and Yang, Jian},
 	year={2024},
 	journal={arXiv},
 }
