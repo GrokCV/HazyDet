@@ -1,22 +1,21 @@
 # HazyDet: Open-Source Benchmark for Drone-View Object Detection With Depth-Cues in Hazy Scenes
 This repository is the official implementation of HazyDet
 
-- [HazyDet: Open-Source Benchmark for Drone-View Object Detection With Depth-Cues in Hazy Scenes](#hazydet-open-source-benchmark-for-drone-view-object-detection-with-depth-cues-in-hazy-scenes)
-  - [HazyDet](#hazydet)
-  - [Leadboard and Model Zoo](#leadboard-and-model-zoo)
-    - [Detectors](#detectors)
-    - [Dehazing](#dehazing)
-  - [DeCoDet](#decodet)
+- [HazyDet](#hazydet)
+    - [Leadboard and Model Zoo](#leadboard-and-model-zoo)
+		- [Detectors](#detectors)
+		- [Dehazing](#dehazing)
+- [DeCoDet](#decodet)
     - [Installation](#installation)
-      - [Step 1: Create a conda](#step-1-create-a-conda)
-      - [Step 2: Install PyTorch](#step-2-install-pytorch)
-      - [Step 3: Install OpenMMLab 2.x Codebases](#step-3-install-openmmlab-2x-codebases)
-      - [Step 4: Install `HazyDet`](#step-4-install-hazydet)
+		- [Step 1: Create a conda](#step-1-create-a-conda)
+		- [Step 2: Install PyTorch](#step-2-install-pytorch)
+		- [Step 3: Install OpenMMLab 2.x Codebases](#step-3-install-openmmlab-2x-codebases)
+  		- [Step 4: Install `HazyDet`](#step-4-install-hazydet)
     - [Training](#training)
     - [Inference](#inference)
     - [Depth Maps](#depth-maps)
-  - [Acknowledgement](#acknowledgement)
-  - [Citation](#citation)
+- [Acknowledgement](#acknowledgement)
+- [Citation](#citation)
 
 ## HazyDet
 
