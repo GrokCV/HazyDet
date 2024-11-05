@@ -1,6 +1,6 @@
 # dataset settings
 dataset_type = 'HazyDetDataset'
-data_root = '/opt/data/private/fcf/HazyDet-365K/data/HazyDet365K/'
+data_root = '/opt/data/private/fcf/Public_dataset/HazyDet-365K/data/HazyDet365K/'
 
 # Example to use different file client
 # Method 1: simply set the data root and let the file I/O module

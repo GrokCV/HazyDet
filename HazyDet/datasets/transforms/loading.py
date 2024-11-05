@@ -193,16 +193,45 @@ class LoadDualAnnotations(MMCV_LoadAnnotations):
         """Private function to load depth map annotations.
 
         Args:
-            results (dict): Result dict from :obj:``mmengine.BaseDataset``.
+            results (dict): Result dict from :obj:`mmcv.BaseDataset`.
+
+        Returns:
+            dict: The dict contains loaded depth map annotations.
         """
-        # Load the depth map
+        
+        # Path to the max depth information file
+        max_depth_file = '/opt/data/private/fcf/Public_dataset/HazyDet-365K/data/HazyDet365K/Depth/max_depth.txt'
+        
+        # Read max depth information
+        max_depth_map = {}
+        with open(max_depth_file, 'r') as f:
+            # Skip the header line
+            for line in f.readlines()[1:]:
+                parts = line.strip().split()
+                if len(parts) == 2:
+                    image_name, max_depth = parts
+                    max_depth_map[image_name] = float(max_depth)
+        
+        # Load depth map
         img_bytes = fileio.get(results['seg_map_path'], backend_args=self.backend_args)
+        
+        # Read the image using OpenCV to handle PNG format
         depth_map = mmcv.imfrombytes(img_bytes, flag='unchanged', backend='cv2').astype(np.float32)
+        
+        # Extract the image file prefix name (without extension) from the path
+        image_name = os.path.splitext(os.path.basename(results['seg_map_path']))[0]
+        
+        if image_name not in max_depth_map:
+            raise ValueError(f"Max depth not found for image: {image_name}")
+        
+        max_depth = max_depth_map[image_name]
 
-
-        absolute_depth_map = depth_map.astype(np.float32)  # 转换为 float32 类型
-
+        # Convert relative depth to absolute depth
+        absolute_depth_map = depth_map / 65535.0 * max_depth
+               
         results['gt_seg_map'] = absolute_depth_map
+
+        return results
 
 
     def transform(self, results: dict) -> dict:
