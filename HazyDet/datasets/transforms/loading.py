@@ -200,7 +200,7 @@ class LoadDualAnnotations(MMCV_LoadAnnotations):
         """
         
         # Path to the max depth information file
-        max_depth_file = '/opt/data/private/fcf/Public_dataset/HazyDet-365K/data/HazyDet365K/Depth/max_depth.txt'
+        max_depth_file = self.max_depth_path
         
         # Read max depth information
         max_depth_map = {}
