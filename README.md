@@ -484,7 +484,7 @@ $ cd HazyDet
 
 ### Inference
 ```shell
-$ python tools/test.py configs/DeCoDet/DeCoDet_r50_1x_hazydet365k.py weights/fcos_DeCoDet_r50_1x_hazydet.pth
+$ python tools/test.py configs/DeCoDet/DeCoDet_r50_1x_hazydet.py weights/fcos_DeCoDet_r50_1x_hazydet.pth
 ```
 
 We released our [checkpoint](https://pan.baidu.com/s/1EEX_934Q421RkHCx53akJQ?pwd=grok) on HazyDet <br>
