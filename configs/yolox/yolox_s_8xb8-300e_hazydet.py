@@ -1,7 +1,7 @@
 _base_ = [
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py',
 ]
-
+img_scales = [(640, 640), (320, 320), (960, 960)]
 tta_model = dict(
     type='DetTTAModel',
     tta_cfg=dict(nms=dict(type='nms', iou_threshold=0.65), max_per_img=100))
@@ -106,7 +106,7 @@ model = dict(
 
 # dataset settings
 dataset_type = 'HazyDetDataset'
-data_root = '/opt/data/private/fcf/HazyDet-365K/data/HazyDet365K/'
+data_root = '/opt/data/private/fcf/private_repo/HazyDet/data/HazyDet/'
 
 # Example to use different file client
 # Method 1: simply set the data root and let the file I/O module
@@ -184,7 +184,7 @@ test_pipeline = [
 ]
 
 train_dataloader = dict(
-    batch_size=8,
+    batch_size=24,
     num_workers=4,
     persistent_workers=True,
     sampler=dict(type='DefaultSampler', shuffle=True),

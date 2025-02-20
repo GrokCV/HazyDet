@@ -126,12 +126,22 @@ class DCKModule(nn.Module):
                 conv_cfg=None,  
                 norm_cfg=dict(type='BN'),  
                 act_cfg=dict(type='ReLU')))  
-            self.convs2.append(nn.Conv2d(  
-                in_channels=channels // reduction_ratio,  
-                out_channels=self.groups * self.kernel_size * self.kernel_size,  
-                kernel_size=1,  
-                stride=1,  
-                bias=False))  
+            # self.convs2.append(nn.Conv2d(  
+            #     in_channels=channels // reduction_ratio,  
+            #     out_channels=self.groups * self.kernel_size * self.kernel_size,  
+            #     kernel_size=1,  
+            #     stride=1,  
+            #     bias=False))  
+            self.convs2.append(  
+                ConvModule(  # 改用ConvModule包装  
+                    in_channels=channels // reduction_ratio,  
+                    out_channels=self.groups * self.kernel_size * self.kernel_size,  
+                    kernel_size=1,  
+                    stride=1,  
+                    conv_cfg=None,  
+                    norm_cfg=None,    
+                    act_cfg=None,   
+                    bias=True))     
 
         self.padding = (kernel_size - 1) // 2  
 
