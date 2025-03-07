@@ -33,12 +33,14 @@ class FCOSDeCoDetHead(FCOSDepthHead):
                                               num_layers=self.condition_layers,
                                               kernel_size=self.con_kernel_size,
                                               group_channels=self.group_channels,
-                                              reduction_ratio=self.reduction_ratio)
+                                              reduction_ratio=self.reduction_ratio,
+                                              stride=1)
         self.cross_involution_reg = DCKModule(channels=self.feat_channels, 
                                               num_layers=self.condition_layers,
                                               kernel_size=self.con_kernel_size,
                                               group_channels=self.group_channels,
-                                              reduction_ratio=self.reduction_ratio)
+                                              reduction_ratio=self.reduction_ratio,
+                                              stride=1)
         
         self.mapping = mapping
         self.map = nn.ReLU()
@@ -106,14 +108,16 @@ class DCKModule(nn.Module):
                  num_layers=1,   
                  kernel_size=7,   
                  group_channels=16,  
-                 reduction_ratio=4):  
+                 reduction_ratio=4,
+                 stride=1):  
         super(DCKModule, self).__init__()  
         self.kernel_size = kernel_size  
         self.channels = channels  
         self.num_layers = num_layers  
         self.group_channels = group_channels  
         self.reduction_ratio = reduction_ratio  
-        self.groups = self.channels // self.group_channels  
+        self.groups = self.channels // self.group_channels 
+        self.stride = stride 
 
         self.convs1 = nn.ModuleList()  
         self.convs2 = nn.ModuleList()  
@@ -126,12 +130,6 @@ class DCKModule(nn.Module):
                 conv_cfg=None,  
                 norm_cfg=dict(type='BN'),  
                 act_cfg=dict(type='ReLU')))  
-            # self.convs2.append(nn.Conv2d(  
-            #     in_channels=channels // reduction_ratio,  
-            #     out_channels=self.groups * self.kernel_size * self.kernel_size,  
-            #     kernel_size=1,  
-            #     stride=1,  
-            #     bias=False))  
             self.convs2.append(  
                 ConvModule(  # 改用ConvModule包装  
                     in_channels=channels // reduction_ratio,  
@@ -143,34 +141,20 @@ class DCKModule(nn.Module):
                     act_cfg=None,   
                     bias=True))     
 
-        self.padding = (kernel_size - 1) // 2  
+        self.unfold = nn.Unfold(kernel_size, 1, (kernel_size-1)//2, stride) 
 
     def forward(self, feature_map, guide_map):  
-        b, c, h, w = feature_map.size()  
-        gc = self.group_channels  
-        g = self.groups  
-        n = self.kernel_size * self.kernel_size  
-        for i in range(self.num_layers):  
-            # 生成动态卷积核  
-            dynamic_filters = self.convs2[i](self.convs1[i](guide_map))  
-            # dynamic_filters 形状: (b, g * n, h, w)  
-            dynamic_filters = dynamic_filters.view(b, g, n, h, w)  
-            dynamic_filters = dynamic_filters.permute(0, 3, 4, 1, 2)  # 形状: (b, h, w, g, n)  
-
-            # 提取输入特征图的拼块  
-            input_patches = F.unfold(feature_map, kernel_size=self.kernel_size, padding=self.padding)  # (b, c * n, h * w)  
-            input_patches = input_patches.view(b, c, n, h, w)  # (b, c, n, h, w)  
-            input_patches = input_patches.view(b, g, gc, n, h, w)  # (b, g, gc, n, h, w)  
-            input_patches = input_patches.permute(0, 4, 5, 1, 3, 2)  # 形状: (b, h, w, g, n, gc)  
-
-            # 计算输出  
-            out = torch.einsum('bhwgnc,bhwgn->bhwgc', input_patches, dynamic_filters)  
-            out = out.permute(0, 3, 4, 1, 2).contiguous()  # 形状: (b, g, gc, h, w)  
-            out = out.view(b, c, h, w)  
-
-            # 残差连接  
-            feature_map = out + feature_map  
-        return feature_map  
+        
+        for i in range(self.num_layers):
+            weight = self.convs2[i](self.convs1[i](guide_map))
+            b, c, h, w = weight.shape
+            weight = weight.view(b, self.groups, self.kernel_size**2, h, w).unsqueeze(2)
+            out = self.unfold(feature_map).view(b, self.groups, self.group_channels, self.kernel_size**2, h, w)
+            out = (weight * out).sum(dim=3).view(b, self.channels, h, w)
+            feature_map = out + feature_map  # residual connection
+        return feature_map
+        
+        
     
 
     

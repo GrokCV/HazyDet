@@ -77,7 +77,7 @@ model = dict(
 
 optim_wrapper = dict(
     clip_grad=dict(max_norm=35, norm_type=2),
-    optimizer=dict(lr=0.01, momentum=0.9, type='SGD', weight_decay=0.0001),
+    optimizer=dict(lr=0.01, momentum=0.937, type='SGD', weight_decay=0.0001),
     paramwise_cfg=dict(bias_decay_mult=0.0, bias_lr_mult=2.0),
     type='OptimWrapper')
 param_scheduler = [
