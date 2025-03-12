@@ -64,7 +64,7 @@ model = dict(
         max_per_img=100))
 # dataset settings
 dataset_type = 'HazyDetDataset'
-data_root = '/opt/data/private/fcf/HazyDet-365K/data/HazyDet365K/'
+data_root = '/opt/data/private/fcf/private_repo/HazyDet/data/HazyDet/'
 
 # Example to use different file client
 # Method 1: simply set the data root and let the file I/O module
@@ -82,7 +82,7 @@ data_root = '/opt/data/private/fcf/HazyDet-365K/data/HazyDet365K/'
 backend_args = None
 
 train_pipeline = [
-    dict(type='LoadImageFromFile', backend_args={{_base_.backend_args}}),
+    dict(type='LoadImageFromFile', backend_args=backend_args),
     dict(type='LoadAnnotations', with_bbox=True),
     # `mean` and `to_rgb` should be the same with the `preprocess_cfg`
     dict(type='Expand', mean=[0, 0, 0], to_rgb=True, ratio_range=(1, 2)),
@@ -96,7 +96,7 @@ train_pipeline = [
     dict(type='PackDetInputs')
 ]
 test_pipeline = [
-    dict(type='LoadImageFromFile', backend_args={{_base_.backend_args}}),
+    dict(type='LoadImageFromFile', backend_args=backend_args),
     dict(type='Resize', scale=(416, 416), keep_ratio=True),
     dict(type='LoadAnnotations', with_bbox=True),
     dict(
@@ -114,8 +114,8 @@ train_dataloader = dict(
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        ann_file='annotations/instances_train2017.json',
-        data_prefix=dict(img='train2017/'),
+        ann_file='train/train_coco.json',
+        data_prefix=dict(img='train/hazy_images/'),
         filter_cfg=dict(filter_empty_gt=True, min_size=32),
         pipeline=train_pipeline,
         backend_args=backend_args))
@@ -128,19 +128,36 @@ val_dataloader = dict(
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        ann_file='annotations/instances_val2017.json',
-        data_prefix=dict(img='val2017/'),
+        ann_file='val/val_coco.json',
+        data_prefix=dict(img='val/hazy_images/'),
         test_mode=True,
         pipeline=test_pipeline,
         backend_args=backend_args))
-test_dataloader = val_dataloader
+test_dataloader = dict(
+    batch_size=1,
+    num_workers=2,
+    persistent_workers=True,
+    drop_last=False,
+    sampler=dict(type='DefaultSampler', shuffle=False),
+    dataset=dict(
+        type=dataset_type,
+        data_root=data_root,
+        ann_file='test/test_coco.json',
+        data_prefix=dict(img='test/hazy_images/'),
+        test_mode=True,
+        pipeline=test_pipeline,
+        backend_args=backend_args))
 
 val_evaluator = dict(
     type='CocoMetric',
-    ann_file=data_root + 'annotations/instances_val2017.json',
+    ann_file=data_root + 'val/val_coco.json',
     metric='bbox',
     backend_args=backend_args)
-test_evaluator = val_evaluator
+test_evaluator = dict(
+    type='CocoMetric',
+    ann_file=data_root + 'test/test_coco.json',
+    metric='bbox',
+    backend_args=backend_args)
 
 train_cfg = dict(max_epochs=273, val_interval=7)
 
