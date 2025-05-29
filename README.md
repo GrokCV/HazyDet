@@ -504,11 +504,12 @@ We are grateful to the Tianjin Key Laboratory of Visual Computing and Intelligen
 If you use this toolbox or benchmark in your research, please cite this project.
 
 ```bibtex
-@article{feng2024HazyDet,
-	title={HazyDet: Open-source Benchmark for Drone-view Object Detection with Depth-cues in Hazy Scenes}, 
-	author={Feng, Changfeng and Chen, Zhenyuan and Kou, Renke and Gao, Guangwei and Wang, Chunping and Li, Xiang and Shu, Xiangbo and Dai, Yimian and Fu, Qiang and Yang, Jian},
-	year={2024},
-	journal={arXiv preprint arXiv:2409.19833},
+
+@article{feng2025HazyDet,
+      title={HazyDet: Open-Source Benchmark for Drone-View Object Detection with Depth-Cues in Hazy Scenes}, 
+      author={Changfeng Feng and Zhenyuan Chen and Xiang Li and Chunping Wang and Jian Yang and Ming-Ming Cheng and Yimian Dai and Qiang Fu},
+      year={2025},
+      journal={arXiv preprint arXiv:2409.19833}, 
 }
 
 @article{zhu2021detection,
