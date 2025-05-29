@@ -436,7 +436,7 @@ All the weight files in the model zoo can be accessed on [Baidu Cloud](https://p
 
 
 ## DeCoDet
-![HazyDet](./docs/network.jpg)
+![HazyDet](./docs/Fig_network.jpg)
 
 ### Installation
 
