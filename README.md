@@ -313,7 +313,7 @@ All the weight files in the model zoo can be accessed on [Baidu Cloud](https://p
         <td>249.91</td>
         <td>51.5</td>
         <td>25.9</td>
-        <td><a href="./configs/DeCoDet/DeCoDet_r50_1x_hazydet.py">config</a></td> <!-- 新增链接 -->
+        <td><a href="./configs/vfnet/DeCoDet_vfnet_r50_fpn_1x_hazydet.py">config</a></td> <!-- 新增链接 -->
         <td><a href="https://pan.baidu.com/s/1EEX_934Q421RkHCx53akJQ?pwd=grok">weight</a></td>
     </tr>
 </table>
@@ -506,10 +506,12 @@ If you use this toolbox or benchmark in your research, please cite this project.
 ```bibtex
 
 @article{feng2025HazyDet,
-      title={HazyDet: Open-Source Benchmark for Drone-View Object Detection with Depth-Cues in Hazy Scenes}, 
+      title={HazyDet: Open-Source Benchmark for Drone-View Object Detection With Depth Cues in Hazy Scenes}, 
       author={Changfeng Feng and Zhenyuan Chen and Xiang Li and Chunping Wang and Jian Yang and Ming-Ming Cheng and Yimian Dai and Qiang Fu},
       year={2025},
-      journal={arXiv preprint arXiv:2409.19833}, 
+      journal={IEEE Transactions on Geoscience and Remote Sensing},
+      year={2026},
+      volume={64},
 }
 
 @article{zhu2021detection,
