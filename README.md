@@ -21,7 +21,7 @@ This repository is the official implementation of HazyDet
 
 ![HazyDet](./docs/dataset_samples.jpg)
 
-You can **download** our HazyDet dataset from [**Baidu Netdisk**](https://pan.baidu.com/s/1KKWqTbG1oBAdlIZrTzTceQ?pwd=grok) or [**OneDrive**](https://1drv.ms/f/s!AmElF7K4aY9p83CqLdm4N-JSo9rg?e=H06ghJ).<br>
+You can **download** our HazyDet dataset from [**Baidu Netdisk**](https://pan.baidu.com/s/1KKWqTbG1oBAdlIZrTzTceQ?pwd=grok) or [**OneDrive**](https://1drv.ms/f/c/698f69b8b2172561/IgCisdnkkMUDQo3JnjeW8ZS0AcpSPk5KPu2ikT8wwxBnVfo?e=ftN8bm).<br>
 
 For both training and inference, the following dataset structure is required:
 
